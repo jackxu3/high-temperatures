@@ -1,0 +1,29 @@
+---
+title: "High Temperatures"
+author: "Jack Xu"
+execute:
+  echo: FALSE
+  message: FALSE
+  warning: FALSE
+---
+
+```{r}
+library(tidyverse)
+library(worldmet)
+
+weather_data <- read_rds("boston.rds")
+```
+
+```{r}
+weather_data %>%
+  filter(!is.na(air_temp)) %>%
+  mutate(date = as.Date(date)) %>%
+  group_by(date) %>%
+  summarise(max_temp = max(air_temp, na.rm = TRUE)) %>%
+  ggplot(aes(x = date, y = max_temp)) +
+  geom_point(color = "steelblue") +
+  labs(title = "Daily Maximum Air Temperature in Boston (2024)",
+       x = "Date",
+       y = "Air Temperature (°C)") +
+  theme_minimal()
+```

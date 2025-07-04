@@ -1,0 +1,5 @@
+---
+title: "About"
+---
+
+This project is created by Jack Xu for Kane's Data Science Bootcamp using AI tools.
